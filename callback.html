@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Whoop Authorization</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+        .code { background: #f0f0f0; padding: 20px; margin: 20px; font-family: monospace; word-break: break-all; }
+    </style>
+</head>
+<body>
+    <h1>Authorization Complete!</h1>
+    <p>Copy the code below and paste it in your terminal:</p>
+    <div class="code" id="code">Loading...</div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        const error = params.get('error');
+        if (code) {
+            document.getElementById('code').textContent = code;
+        } else if (error) {
+            document.getElementById('code').textContent = 'Error: ' + error + ' - ' + params.get('error_description');
+        } else {
+            document.getElementById('code').textContent = 'No code received. Check the URL.';
+        }
+    </script>
+</body>
+</html>
